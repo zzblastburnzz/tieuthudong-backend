@@ -1,4 +1,3 @@
-// ==== prisma/schema.prisma ====
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,13 +8,14 @@ datasource db {
 }
 
 model User {
-  id       String   @id @default(uuid())
-  name     String
-  role     String   // 'child' | 'parent'
-  age      Int
-  gender   String
-  createdAt DateTime @default(now())
-  tasks    Task[]
+  id         String        @id @default(uuid())
+  name       String
+  role       String
+  age        Int
+  gender     String
+  createdAt  DateTime      @default(now())
+  tasks      Task[]
+  behaviors  BehaviorLog[]
 }
 
 model Task {
@@ -26,4 +26,13 @@ model Task {
   userId      String
   user        User     @relation(fields: [userId], references: [id])
   createdAt   DateTime @default(now())
+}
+
+model BehaviorLog {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  type      String
+  value     String
+  timestamp DateTime @default(now())
 }
