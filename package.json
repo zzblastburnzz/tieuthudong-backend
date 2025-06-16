@@ -1,0 +1,5 @@
+"scripts": {
+  "start": "node dist/main",
+  "build": "nest build",
+  "start:prod": "npm run build && node dist/main"
+}
